@@ -149,7 +149,7 @@ pub async fn verify(
     {
         GenericSignature::ZkLoginAuthenticator(zk) => {
             match payload.intent_scope {
-                let bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
+                bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
                 IntentScope::TransactionData => {
                     let tx_data: TransactionData =
                         bcs::from_bytes(&bytes).map_err(|_| VerifyError::ParsingError)?;
@@ -162,7 +162,8 @@ pub async fn verify(
                         &aux_verify_data,
                     ) {
                         Ok(_) => Ok(Json(VerifyResponse { is_verified: true })),
-                        Err(e) => Err(VerifyError::GenericError(e.to_string())),
+                        Err(e) => Err(VerifyErro
+                            r::GenericError(e.to_string())),
                     }
                 }
                 IntentScope::PersonalMessage => {
