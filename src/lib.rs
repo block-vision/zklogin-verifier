@@ -143,8 +143,8 @@ pub async fn verify(
     info!("aux_verify_data: {:?}", aux_verify_data);
 
     match GenericSignature::from_bytes(
-        &Base64::decode(&payload.signature).map_err(|_| {VerifyError::GetEpochError})?,
-    ).map_err(|_| VerifyError::GetEpochError)?
+        &Base64::decode(&payload.signature).map_err(|_| {VerifyError::ParsingError})?,
+    ).map_err(|_| VerifyError::ParsingError)?
     {
         GenericSignature::ZkLoginAuthenticator(zk) => {
             let bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
@@ -196,6 +196,6 @@ pub async fn verify(
                 _ => Err(VerifyError::ParsingError),
             }
         }
-        _ => Err(VerifyError::GetEpochError),
+        _ => Err(VerifyError::ParsingError),
     }
 }
