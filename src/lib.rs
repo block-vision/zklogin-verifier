@@ -178,6 +178,7 @@ pub async fn verify(
                     //     Some(author) => author,
                     //     None => return Err(VerifyError::ParsingError),
                     // };
+                    let author = ""
                     match zk.verify_authenticator(
                         &intent_msg,
                         author,
