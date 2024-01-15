@@ -101,8 +101,6 @@ impl IntoResponse for VerifyError {
             VerifyError::GenericError(e) => (StatusCode::BAD_REQUEST, e),
             VerifyError::ParsingError => (StatusCode::BAD_REQUEST, "Parsing error".to_string()),
             VerifyError::GetEpochError => (StatusCode::BAD_REQUEST, "Cannot get epoch".to_string()),
-            VerifyError::CustomError => (StatusCode::BAD_REQUEST, "Custom error".to_string()),
-            VerifyError::CustomError2 => (StatusCode::BAD_REQUEST, "Custom error2".to_string()),
         };
         let body = Json(json!({
             "error": error_message,
@@ -145,8 +143,8 @@ pub async fn verify(
     info!("aux_verify_data: {:?}", aux_verify_data);
 
     match GenericSignature::from_bytes(
-        &Base64::decode(&payload.signature).map_err(|_| VerifyError::CustomError2)?,
-    ).map_err(|_| VerifyError::CustomError)?
+        &Base64::decode(&payload.signature).map_err(|_| println!("Error custome err");)?,
+    ).map_err(|_| println!("Error custome err2");)?
     {
         GenericSignature::ZkLoginAuthenticator(zk) => {
             let bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
