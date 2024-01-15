@@ -101,8 +101,8 @@ impl IntoResponse for VerifyError {
             VerifyError::GenericError(e) => (StatusCode::BAD_REQUEST, e),
             VerifyError::ParsingError => (StatusCode::BAD_REQUEST, "Parsing error".to_string()),
             VerifyError::GetEpochError => (StatusCode::BAD_REQUEST, "Cannot get epoch".to_string()),
-            VerifyError::CustomError => (StatusCode::BAD_REQUEST, "Custom error".to_string())
-            VerifyError::CustomError2 => (StatusCode::BAD_REQUEST, "Custom error2".to_string())
+            VerifyError::CustomError => (StatusCode::BAD_REQUEST, "Custom error".to_string()),
+            VerifyError::CustomError2 => (StatusCode::BAD_REQUEST, "Custom error2".to_string()),
         };
         let body = Json(json!({
             "error": error_message,
