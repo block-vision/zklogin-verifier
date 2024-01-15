@@ -166,7 +166,6 @@ pub async fn verify(
                     }
                 }
                 IntentScope::PersonalMessage => {
-                    let bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
                     let intent_msg = IntentMessage::new(
                         Intent {
                             scope: IntentScope::PersonalMessage,
