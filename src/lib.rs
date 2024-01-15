@@ -144,7 +144,7 @@ pub async fn verify(
 
     match GenericSignature::from_bytes(
         &Base64::decode(&payload.signature).map_err(|_| {println!("Error custome err");}),
-    ).map_err(|_| {println!("Error custome err2");});
+    ).map_err(|_| {println!("Error custome err2");})
     {
         GenericSignature::ZkLoginAuthenticator(zk) => {
             let bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
