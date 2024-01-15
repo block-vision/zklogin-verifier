@@ -149,6 +149,8 @@ pub async fn verify(
     {
         GenericSignature::ZkLoginAuthenticator(zk) => {
             let bytes = Base64::decode(&payload.bytes).map_err(|_| VerifyError::ParsingError)?;
+
+            info!("intent_scope: {:?}  {:?}  {:?}", payload.intent_scope, IntentScope::TransactionData, IntentScope::PersonalMessage);
             match payload.intent_scope {
                 IntentScope::TransactionData => {
                     let tx_data: TransactionData =
