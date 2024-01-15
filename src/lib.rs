@@ -155,6 +155,7 @@ pub async fn verify(
                         bcs::from_bytes(&bytes).map_err(|_| VerifyError::ParsingError)?;
                     let intent_msg = IntentMessage::new(Intent::sui_transaction(), tx_data.clone());
                     let author = tx_data.execution_parts().1;
+                    info!("author: {:?}", author);
                     match zk.verify_authenticator(
                         &intent_msg,
                         author,
