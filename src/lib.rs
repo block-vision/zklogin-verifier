@@ -167,6 +167,7 @@ pub async fn verify(
                     }
                 }
                 IntentScope::PersonalMessage => {
+                    info!("author: {:?}", payload.author);
                     let intent_msg = IntentMessage::new(
                         Intent {
                             scope: IntentScope::PersonalMessage,
