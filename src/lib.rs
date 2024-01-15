@@ -196,6 +196,6 @@ pub async fn verify(
                 _ => Err(VerifyError::ParsingError),
             }
         }
-        _ => Err(VerifyError::ParsingError),
+        _ => Err(VerifyError::GetEpochError),
     }
 }
